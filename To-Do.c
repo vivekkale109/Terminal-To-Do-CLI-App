@@ -11,3 +11,12 @@
 #define RED "\033[0;31m"
 #define YELLOW "\033[0;33m"
 #define RESET "\033[0m"
+
+typedef struct {
+    int id;
+    char title[MAX_TITLE];
+    int completed; // 0 = pending, 1 = done
+} Task;
+
+Task tasks[MAX_TASKS];
+int taskCount = 0;
