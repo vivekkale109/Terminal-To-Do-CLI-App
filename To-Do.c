@@ -20,3 +20,20 @@ typedef struct {
 
 Task tasks[MAX_TASKS];
 int taskCount = 0;
+
+// Load tasks from JSON file (basic parsing)
+void loadTasks() {
+    FILE *file = fopen(FILE_NAME, "r");
+    if (!file) return;
+
+    char line[512];
+    while (fgets(line, sizeof(line), file)) {
+        Task t;
+        if (sscanf(line, "{\"id\":%d,\"title\":\"%[^\"]\",\"completed\":%d}",
+                   &t.id, t.title, &t.completed) == 3) {
+            tasks[taskCount++] = t;
+        }
+    }
+
+    fclose(file);
+}
