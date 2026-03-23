@@ -53,3 +53,21 @@ void saveTasks() {
 
     fclose(file);
 }
+
+// Add new task
+void addTask(char *title) {
+    if (taskCount >= MAX_TASKS) {
+        printf(RED "Task limit reached!\n" RESET);
+        return;
+    }
+
+    Task t;
+    t.id = (taskCount == 0) ? 1 : tasks[taskCount - 1].id + 1;
+    strcpy(t.title, title);
+    t.completed = 0;
+
+    tasks[taskCount++] = t;
+    saveTasks();
+
+    printf(GREEN "Task added successfully!\n" RESET);
+}
