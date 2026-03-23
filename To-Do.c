@@ -100,3 +100,25 @@ void markDone(int id) {
     }
     printf(RED "Task not found!\n" RESET);
 }
+
+// Delete task
+void deleteTask(int id) {
+    int found = 0;
+
+    for (int i = 0; i < taskCount; i++) {
+        if (tasks[i].id == id) {
+            found = 1;
+            for (int j = i; j < taskCount - 1; j++) {
+                tasks[j] = tasks[j + 1];
+            }
+            taskCount--;
+            saveTasks();
+            printf(GREEN "Task deleted!\n" RESET);
+            return;
+        }
+    }
+
+    if (!found) {
+        printf(RED "Task not found!\n" RESET);
+    }
+}
