@@ -87,3 +87,16 @@ void listTasks() {
                tasks[i].title);
     }
 }
+
+// Mark task as done
+void markDone(int id) {
+    for (int i = 0; i < taskCount; i++) {
+        if (tasks[i].id == id) {
+            tasks[i].completed = 1;
+            saveTasks();
+            printf(GREEN "Task marked as completed!\n" RESET);
+            return;
+        }
+    }
+    printf(RED "Task not found!\n" RESET);
+}
