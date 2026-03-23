@@ -37,3 +37,19 @@ void loadTasks() {
 
     fclose(file);
 }
+
+// Save tasks to JSON file
+void saveTasks() {
+    FILE *file = fopen(FILE_NAME, "w");
+    if (!file) {
+        printf(RED "Error saving tasks!\n" RESET);
+        return;
+    }
+
+    for (int i = 0; i < taskCount; i++) {
+        fprintf(file, "{\"id\":%d,\"title\":\"%s\",\"completed\":%d}\n",
+                tasks[i].id, tasks[i].title, tasks[i].completed);
+    }
+
+    fclose(file);
+}
