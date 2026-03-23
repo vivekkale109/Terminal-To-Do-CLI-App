@@ -71,3 +71,19 @@ void addTask(char *title) {
 
     printf(GREEN "Task added successfully!\n" RESET);
 }
+
+// List tasks
+void listTasks() {
+    if (taskCount == 0) {
+        printf(YELLOW "No tasks found.\n" RESET);
+        return;
+    }
+
+    printf("\n--- To-Do List ---\n");
+    for (int i = 0; i < taskCount; i++) {
+        printf("%d. [%s] %s\n",
+               tasks[i].id,
+               tasks[i].completed ? "✔" : " ",
+               tasks[i].title);
+    }
+}
