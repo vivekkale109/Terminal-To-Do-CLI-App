@@ -122,3 +122,47 @@ void deleteTask(int id) {
         printf(RED "Task not found!\n" RESET);
     }
 }
+
+// Main CLI handler
+int main(int argc, char *argv[]) {
+    loadTasks();
+
+    if (argc < 2) {
+        printf(YELLOW "Usage:\n" RESET);
+        printf("  add \"task\"\n");
+        printf("  list\n");
+        printf("  done <id>\n");
+        printf("  delete <id>\n");
+        return 0;
+    }
+
+    if (strcmp(argv[1], "add") == 0) {
+        if (argc < 3) {
+            printf(RED "Please provide a task.\n" RESET);
+            return 1;
+        }
+        addTask(argv[2]);
+
+    } else if (strcmp(argv[1], "list") == 0) {
+        listTasks();
+
+    } else if (strcmp(argv[1], "done") == 0) {
+        if (argc < 3) {
+            printf(RED "Provide task ID.\n" RESET);
+            return 1;
+        }
+        markDone(atoi(argv[2]));
+
+    } else if (strcmp(argv[1], "delete") == 0) {
+        if (argc < 3) {
+            printf(RED "Provide task ID.\n" RESET);
+            return 1;
+        }
+        deleteTask(atoi(argv[2]));
+
+    } else {
+        printf(RED "Unknown command!\n" RESET);
+    }
+
+    return 0;
+}
